@@ -7,3 +7,5 @@
 /.idea
 *.spec
 /docs/userguide/site
+*.drawio
+*.bkp
