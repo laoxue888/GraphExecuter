@@ -1,0 +1,9 @@
+
+/test
+/logs
+*.pyc
+/build
+/dist
+/.idea
+*.spec
+/docs/userguide/site
