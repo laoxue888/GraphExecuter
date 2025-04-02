@@ -27,7 +27,7 @@ pip install --force-reinstall --no-cache-dir pyside6
 ```shell
 python main.py
 ```
-❇️创建节点
+❇️按`Tab`创建节点
 
 ![](images/create_node.gif)
 
