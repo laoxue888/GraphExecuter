@@ -1,5 +1,5 @@
 
-# 前言（Introduction）
+## 前言（Introduction）
 
 > Ref：
 > - [NodeGraphQt](https://github.com/jchanvfx/NodeGraphQt)
@@ -13,16 +13,16 @@ GraphExecuter is an open-source software built on NodeGraphQt, designed to simpl
 
 With an intuitive node-based interface, users can easily design, connect, and execute workflows for tasks like data processing, automation, or distributed computing. GraphExecuter is ideal for developers and researchers who need a flexible, visual, and high-performance way to manage complex workflows without dealing with low-level concurrency control.
 
-# 开发环境搭建（Development environment setup）
+## 开发环境搭建（Development environment setup）
 
 ```shell
 pip install -r .\requirements.txt
 
-# 强制重新安装模块
+## 强制重新安装模块
 pip install --force-reinstall --no-cache-dir pyside6
 ```
 
-# 运行（Run test）
+## 运行（Run test）
 
 ```shell
 python main.py
@@ -39,7 +39,7 @@ python main.py
 
 ![](images/run_from_node.gif)
 
-# 开发者（Developer）
+## 开发者（Developer）
 
 ❇️编写节点（Create node type）
 
@@ -49,7 +49,7 @@ python main.py
 
 ![](images/img_1.png)
 
-# 编译（Compile）
+## 编译（Compile）
 
 ```shell
 ./compile.bat
@@ -59,7 +59,7 @@ python main.py
 
 生成的可执行文件存放在`dist`文件夹下
 
-# 报错
+## 报错
 
 ❌框选节点的时候报错
 
