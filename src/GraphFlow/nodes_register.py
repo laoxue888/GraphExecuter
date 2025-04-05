@@ -158,5 +158,70 @@ class GraphFlow:
 
         visit_up(start_node)
         visit_down(start_node)
-        return execution_order_up +execution_order_down
+        execution_order = execution_order_up + execution_order_down
+        # 删除重复的节点
+        if len(execution_order)==2:
+            if execution_order[0]==execution_order[1]:
+                del execution_order[0]
+                return execution_order
+            else:
+                return execution_order
+        return execution_order
+
+    def save_session(self,):
+        """
+        Prompts a file save dialog to serialize a session if required.
+        """
+        current = self.graph.current_session()
+        if current:
+            self.graph.save_session(current)
+            msg = 'Session layout saved:\n{}'.format(current)
+            viewer = self.graph.viewer()
+            viewer.message_dialog(msg, title='Session Saved')
+        else:
+            self.save_session_as()
+
+    def save_session_as(self,):
+        """
+        Prompts a file save dialog to serialize a session.
+        """
+        current = self.graph.current_session()
+        file_path = self.graph.save_dialog(current)
+
+        def save_session(file_path):
+            from pathlib import Path
+            import json
+
+            def convert_paths_to_strings(obj):
+                if isinstance(obj, dict):
+                    return {k: convert_paths_to_strings(v) for k, v in obj.items()}
+                elif isinstance(obj, (list, tuple, set)):
+                    return type(obj)(convert_paths_to_strings(x) for x in obj)
+                elif isinstance(obj, Path):
+                    return str(obj)
+                return obj
+
+            serialized_data = self.graph.serialize_session()
+            serialized_data = convert_paths_to_strings(serialized_data)
+            file_path = file_path.strip()
+
+            def default(obj):
+                if isinstance(obj, set):
+                    return list(obj)
+                return obj
+
+            with open(file_path, 'w') as file_out:
+                json.dump(
+                    serialized_data,
+                    file_out,
+                    indent=2,
+                    separators=(',', ':'),
+                    default=default
+                )
+
+            # update the current session.
+            self.graph._model.session = file_path
+
+        if file_path:
+            save_session(file_path)
 

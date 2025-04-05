@@ -86,7 +86,11 @@ class ReadLargeTxtDataNode(BaseNode):
 
         # create input and output port.
         # self.add_input('')
-        self.add_output('Output')
+        self.add_output('header')
+        self.add_output('src_data')
+
+        self.create_property('header', ['name1','name2'])
+        self.create_property('src_data', [1,4])
 
         # add custom widget to node with "node.view" as the parent.
         node_widget = NodeWidgetWrapper(self.view)
@@ -96,9 +100,9 @@ class ReadLargeTxtDataNode(BaseNode):
         self.add_text_input('folder_path', '', tab='widgets')
 
     def execute(self):
+        """图管理只执行这个函数"""
+        print(self.get_property('header'))
         return "ReadLargeTxtDataNode executed"
 
-    def get_value(self):
-        return self.execute()
 
 

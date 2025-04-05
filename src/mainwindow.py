@@ -25,6 +25,8 @@ class MainWindow(QMainWindow, QObject):
         # save custom data format: 0: data；1: type, like as str、int、float etc
         self.userSettings['graph_session'] = ['', 'str']
         self.settings_dir = os.path.join(os.getcwd(), "settings")
+
+        self.graph_session_is_changed = False
         self.loadSettings()
 
         self.setWindowIcon(QIcon(os.path.join(os.getcwd(), "settings", "myicon.png")))
@@ -50,6 +52,7 @@ class MainWindow(QMainWindow, QObject):
 
         def saveSesionPath():
             self.userSettings['graph_session'][0] = self.graph.graph.current_session()
+            self.graph_session_is_changed = True
         self.graph.graph.session_changed.connect(saveSesionPath)
 
         self.ui.verticalLayout_graph.addWidget(self.graph.graph_widget)
@@ -121,6 +124,8 @@ class MainWindow(QMainWindow, QObject):
     def closeEvent(self, event):
         self.saveSettings()
         self.messageSignal.emit("Close time: {}".format(datetime.datetime.now()))
+        if self.graph_session_is_changed:
+            self.graph.save_session_as()
         return super().closeEvent(event)
 
 

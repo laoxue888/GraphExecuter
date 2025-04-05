@@ -64,7 +64,6 @@ def handle_exception(exc_type, exc_value, exc_traceback):
 sys.excepthook = handle_exception
 
 if __name__ == '__main__':
-    print(sys.path)
     app = QApplication.instance()
     if app is None:
         app = QApplication(sys.argv)
