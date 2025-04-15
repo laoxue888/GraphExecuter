@@ -30,9 +30,17 @@ class GraphFlow:
         ######################################在这里注册节点#####################################
         # registered example nodes. Tab键可弹出 ##Backdrop节点可以用于注释
         for node in nodes_math.__all__:
-            self.graph.register_node(eval("{}.{}".format('nodes_math', node)))
+            try:
+                self.graph.register_node(eval("{}.{}".format('nodes_math', node)))
+                self.messageSignal.emit(f'registered {node}')
+            except Exception as e:
+                self.messageSignal.emit(f'{e} load failed')
         for node in nodes_read_data.__all__:
-            self.graph.register_node(eval("{}.{}".format('nodes_read_data', node)))
+            try:
+                self.graph.register_node(eval("{}.{}".format('nodes_read_data', node)))
+                self.messageSignal.emit(f'registered {node}')
+            except Exception as e:
+                self.messageSignal.emit(f'{e} load failed')
         #######################################################################################
         # # auto layout nodes.
         self.graph.auto_layout_nodes()
