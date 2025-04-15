@@ -17,6 +17,8 @@ code: [GraphExecuter](https://github.com/laoxue888/GraphExecuter)
 
 video: [高效创建工作流，可实现类似unreal engine的蓝图效果，内部使用多线程高效执行节点函数](https://www.bilibili.com/video/BV1PkfKY1Esk/?vd_source=3bf4271e80f39cfee030114782480463)
 
+> 2025-4-15更新：改为选中目标节点执行图，目标节点即要运行到的节点
+
 ## 开发环境搭建（Development environment setup）
 
 ```shell

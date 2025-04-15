@@ -18,7 +18,7 @@ def style(qApp):
         # adjust menu style
         "QMenu::separator {height: 1px; margin-left: 6px; margin-right: 6px; background: rgba(155, 155, 155, 255);}"
         # set message box style
-        "QMessageBox {color: white;}QMessageBox QLabel {color: white;}"
+        "QMessageBox {color: white;}QMessageBox QLabel {color: yellow;}"
     )
     # # set style and color palette
     qApp.setStyle(QStyleFactory.create("Fusion"))
@@ -47,21 +47,21 @@ def style(qApp):
     qApp.setFont(font)
 
 # inner exception handler for the application
-def handle_exception(exc_type, exc_value, exc_traceback):
-    """异常处理函数"""
-    message = f"An exception of type {exc_type.__name__} occurred.\n{exc_value}"
-    QMessageBox.critical(None, "程序内部报错提示！", message)
-
-    logPath = os.path.join(os.getcwd(), "logs")
-    if not os.path.isdir(logPath):
-        os.makedirs(logPath)
-    logPath = os.path.join(logPath, f"{time.strftime('%Y-%m-%d', time.localtime())}.txt")
-
-    with open(logPath, 'a') as f:
-        saveTime = '[' + time.strftime('%H:%M:%S', time.localtime()) + ']: '
-        f.write(saveTime + message + '\n')
-
-sys.excepthook = handle_exception
+# def handle_exception(exc_type, exc_value, exc_traceback):
+#     """异常处理函数"""
+#     message = f"An exception of type {exc_type.__name__} occurred.\n{exc_value}"
+#     QMessageBox.critical(None, "程序内部报错提示！", message)
+#
+#     logPath = os.path.join(os.getcwd(), "logs")
+#     if not os.path.isdir(logPath):
+#         os.makedirs(logPath)
+#     logPath = os.path.join(logPath, f"{time.strftime('%Y-%m-%d', time.localtime())}.txt")
+#
+#     with open(logPath, 'a') as f:
+#         saveTime = '[' + time.strftime('%H:%M:%S', time.localtime()) + ']: '
+#         f.write(saveTime + message + '\n')
+#
+# sys.excepthook = handle_exception
 
 if __name__ == '__main__':
     app = QApplication.instance()

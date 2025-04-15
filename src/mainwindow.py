@@ -46,7 +46,7 @@ class MainWindow(QMainWindow, QObject):
         """"""
         self.graph = GraphFlow(messageSignal=self.messageSignal)
         try:
-            self.graph.graph._model.session = self.userSettings['graph_session'][0]
+            self.graph.graph.load_session(self.userSettings['graph_session'][0])
         except Exception as err:
             self.messageSignal.emit(err)
 
@@ -57,10 +57,10 @@ class MainWindow(QMainWindow, QObject):
 
         self.ui.verticalLayout_graph.addWidget(self.graph.graph_widget)
         self.ui.actionexecute_graph.triggered.connect(self.graph.execute_all_nodes)
-        self.ui.actionexetute_from_start_node.triggered.connect(self.graph.execute_downstream)
+        self.ui.actionexetute_from_goal_node.triggered.connect(self.graph.execute_downstream)
 
-        self.ui.actionexetute_from_start_node.setIcon(
-            QIcon(os.path.join(os.getcwd(), "settings", "BtnIcon","from_start_node.png")))
+        self.ui.actionexetute_from_goal_node.setIcon(
+            QIcon(os.path.join(os.getcwd(), "settings", "BtnIcon","from_obj_node.png")))
         self.ui.actionexecute_graph.setIcon(
             QIcon(os.path.join(os.getcwd(), "settings", "BtnIcon", "all_graph.png")))
 
@@ -87,7 +87,7 @@ class MainWindow(QMainWindow, QObject):
             self.ui.actionOpen_log_dir.setText(en_data["main_window"]["actionOpen_log_dir"])
             self.ui.menuWindow.setTitle(en_data["main_window"]["menuWindow"])
             self.ui.menuTools.setTitle(en_data["main_window"]["menuTools"])
-            self.ui.actionexetute_from_start_node.setText(en_data["main_window"]["actionexetute_from_start_node"])
+            self.ui.actionexetute_from_goal_node.setText(en_data["main_window"]["actionexetute_from_goal_node"])
             self.ui.actionexecute_graph.setText(en_data["main_window"]["actionexecute_graph"])
             self.ui.actionWindow1.setText(en_data["main_window"]["actionWindow1"])
             self.ui.actionWindow2.setText(en_data["main_window"]["actionWindow2"])
@@ -124,8 +124,7 @@ class MainWindow(QMainWindow, QObject):
     def closeEvent(self, event):
         self.saveSettings()
         self.messageSignal.emit("Close time: {}".format(datetime.datetime.now()))
-        if self.graph_session_is_changed:
-            self.graph.save_session_as()
+        self.graph.save_session()
         return super().closeEvent(event)
 
 

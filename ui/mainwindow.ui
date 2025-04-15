@@ -214,7 +214,7 @@
     <property name="title">
      <string>工具</string>
     </property>
-    <addaction name="actionexetute_from_start_node"/>
+    <addaction name="actionexetute_from_goal_node"/>
     <addaction name="actionexecute_graph"/>
    </widget>
    <addaction name="menuTools"/>
@@ -231,7 +231,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionexetute_from_start_node"/>
+   <addaction name="actionexetute_from_goal_node"/>
    <addaction name="actionexecute_graph"/>
   </widget>
   <action name="actionCheck_for_updates">
@@ -285,10 +285,10 @@
     <string>运行整图</string>
    </property>
    <property name="iconText">
-    <string>从所有的启动节点开始创建多线程运行整个图</string>
+    <string>从所有的目标节点开始创建多线程运行整个图</string>
    </property>
    <property name="toolTip">
-    <string>从所有的启动节点开始创建多线程运行整个图</string>
+    <string>从所有的目标节点开始创建多线程运行整个图</string>
    </property>
   </action>
   <action name="actionWindow2">
@@ -296,15 +296,15 @@
     <string>窗口2</string>
    </property>
   </action>
-  <action name="actionexetute_from_start_node">
+  <action name="actionexetute_from_goal_node">
    <property name="text">
-    <string>选中启动节点运行</string>
+    <string>选中目标节点运行</string>
    </property>
    <property name="iconText">
-    <string>从选中的启动节点开始运行</string>
+    <string>从选中的目标节点开始运行</string>
    </property>
    <property name="toolTip">
-    <string>从选中的启动节点开始运行</string>
+    <string>从选中的目标节点开始运行</string>
    </property>
   </action>
  </widget>
