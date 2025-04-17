@@ -10,8 +10,8 @@ from NodeGraphQt import (
 from threading import Thread
 
 # import example nodes from the "nodes" sub-package
-from .nodes import nodes_math, nodes_read_data
-from collections import deque
+from nodes import *
+import nodes
 
 # 然后正常使用 NodeGraphQt
 BASE_PATH = Path(__file__).parent.resolve()
@@ -29,18 +29,31 @@ class GraphFlow:
         self.graph.set_context_menu_from_file(hotkey_path, 'graph')
         ######################################在这里注册节点#####################################
         # registered example nodes. Tab键可弹出 ##Backdrop节点可以用于注释
-        for node in nodes_math.__all__:
-            try:
-                self.graph.register_node(eval("{}.{}".format('nodes_math', node)))
-                self.messageSignal.emit(f'registered {node}')
-            except Exception as e:
-                self.messageSignal.emit(f'{e} load failed')
-        for node in nodes_read_data.__all__:
-            try:
-                self.graph.register_node(eval("{}.{}".format('nodes_read_data', node)))
-                self.messageSignal.emit(f'registered {node}')
-            except Exception as e:
-                self.messageSignal.emit(f'{e} load failed')
+        for module in nodes.__all__:
+            for node in eval(module).__all__:
+                try:
+                    self.graph.register_node(eval("{}.{}".format(str(module), str(node))))
+                    self.messageSignal.emit(f'registered {node}')
+                except Exception as e:
+                    self.messageSignal.emit(f'{e} load failed')
+        # for node in nodes_math.__all__:
+        #     try:
+        #         self.graph.register_node(eval("{}.{}".format('nodes_math', node)))
+        #         self.messageSignal.emit(f'registered {node}')
+        #     except Exception as e:
+        #         self.messageSignal.emit(f'{e} load failed')
+        # for node in nodes_read_data.__all__:
+        #     try:
+        #         self.graph.register_node(eval("{}.{}".format('nodes_read_data', node)))
+        #         self.messageSignal.emit(f'registered {node}')
+        #     except Exception as e:
+        #         self.messageSignal.emit(f'{e} load failed')
+        # for node in nodes_speech.__all__:
+        #     try:
+        #         self.graph.register_node(eval("{}.{}".format('nodes_speech', node)))
+        #         self.messageSignal.emit(f'registered {node}')
+        #     except Exception as e:
+        #         self.messageSignal.emit(f'{e} load failed')
         #######################################################################################
         # # auto layout nodes.
         self.graph.auto_layout_nodes()
@@ -74,7 +87,6 @@ class GraphFlow:
         # except Exception as err:
         #     print(err)
 
-
     def execute_downstream(self):
         """从选定节点开始执行下游节点"""
         selected_nodes = self.graph.selected_nodes()
@@ -95,7 +107,7 @@ class GraphFlow:
                 messageSignal.emit(f"Thread error: {err}")
 
         # 可以在这里创建多线程去执行，每一个初始节点创建一个线程
-        thread = Thread(target=run_graph, args=(self.messageSignal,))
+        thread = Thread(target=run_graph, args=(self.messageSignal,), daemon=True)
         thread.start()
         # self.messageSignal.emit("=== 执行完成 ===\n")
 
@@ -126,7 +138,7 @@ class GraphFlow:
 
         # 可以在这里创建多线程去执行，每一个初始节点创建一个线程
         for obj_node in obj_nodes:
-            thread = Thread(target=run_graph, args=(obj_node, self.messageSignal))
+            thread = Thread(target=run_graph, args=(obj_node, self.messageSignal), daemon=True)
             thread.start()
         # self.messageSignal.emit("=== 全部执行完成 ===\n")
 

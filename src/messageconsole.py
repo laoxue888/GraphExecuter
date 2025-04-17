@@ -26,7 +26,7 @@ class MessageConsole(QWidget):
     @Slot(str)
     def showMessage(self, text):
         """"""
-        self.log = open(self.logPath, 'a')
+        self.log = open(self.logPath, 'a', encoding='utf-8')
         saveTime = '[' + time.strftime('%H:%M:%S', time.localtime()) + ']: '
         self.ui.textBrowser.append(saveTime + text)
         print(saveTime + text)

@@ -7,6 +7,55 @@ from nptdms import TdmsWriter, ChannelObject
 import numpy as np
 from nptdms.types import TimeStamp
 import os
+import zipfile
+import requests
+
+
+def download_and_extract_zip(url, download_folder, extract_folder=None):
+    """
+    下载ZIP文件并解压到指定目录
+
+    参数:
+        url: ZIP文件的URL
+        download_folder: 下载文件保存的目录
+        extract_folder: 解压目录(默认为下载目录)
+    """
+    # 如果未指定解压目录，则使用下载目录
+    if extract_folder is None:
+        extract_folder = download_folder
+
+    # 确保目录存在
+    os.makedirs(download_folder, exist_ok=True)
+    os.makedirs(extract_folder, exist_ok=True)
+
+    try:
+        # 从URL获取文件名
+        zip_filename = os.path.join(download_folder, url.split('/')[-1])
+
+        print(f"正在下载 {url}...")
+        # 下载文件
+        response = requests.get(url, stream=True)
+        response.raise_for_status()  # 检查请求是否成功
+
+        # 写入文件
+        with open(zip_filename, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+
+        print(f"文件已下载到: {zip_filename}")
+
+        # 解压文件
+        print(f"正在解压到 {extract_folder}...")
+        with zipfile.ZipFile(zip_filename, 'r') as zip_ref:
+            zip_ref.extractall(extract_folder)
+
+        print("解压完成!")
+
+        return True
+
+    except Exception as e:
+        print(f"发生错误: {e}")
+        return False
 
 def find_dir_path(dir_name):
     """
