@@ -96,6 +96,10 @@ class VOSKRecognitionNode(BaseNode):
         # 加载模型
         # https://alphacephei.com/vosk/models/vosk-model-small-cn-0.22.zip         41.87 M
         # https://alphacephei.com/vosk/models/vosk-model-cn-0.15.zip                1.67 G
+        models_dir = os.path.join(os.getcwd(), 'res', 'models', 'VOSK')
+        if not os.path.exists(models_dir):
+            os.makedirs(models_dir)
+
         model_dir = os.path.join(os.getcwd(), 'res', 'models', 'VOSK', 'vosk-model-cn-0.15')
         if os.path.exists(model_dir):
             self.vosk_model = Model(model_dir)

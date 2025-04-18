@@ -8,5 +8,41 @@
     "accept_connection_types":{},
     "reject_connection_types":{}
   },
-  "nodes":{}
+  "nodes":{
+    "0x2af5a7625d0":{
+      "type_":"nodes.speech.VOSKRecognitionNode",
+      "icon":null,
+      "name":"Speech recognition by vosk",
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":true,
+      "visible":true,
+      "width":216.03125,
+      "height":60,
+      "pos":[
+        -128.67822427455235,
+        298.6044069621547
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{}
+    }
+  }
 }
