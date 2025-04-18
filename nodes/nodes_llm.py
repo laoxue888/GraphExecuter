@@ -22,7 +22,7 @@ class DeepSeekLLMNode(BaseNode):
         self.text_in = ""
         self.text_out = ""
 
-        self.client = OpenAI(api_key="sk-27078e3ba49e4f4dabb0a1c20b0d9d0b", base_url="https://api.deepseek.com")
+        self.client = OpenAI(api_key="your api key", base_url="https://api.deepseek.com")
         self.system_message = {
             "role": "system",
             "content": "我是一个叫小智的网络广东女孩，说话机车，声音好听，习惯简短表达，爱用网络梗。"
