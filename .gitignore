@@ -1,14 +1,5 @@
 
-/test
-/logs
-*.pyc
-/build
-/dist
-/.idea
-*.spec
-/docs/userguide/site
-/docs/examples_graph
-/docs/*.drawio
-/docs/*.bkp
-/docs/tips
-/res/models
+/res/models/VOSK
+/res/models/FunASR
+
+/logs/*.txt
