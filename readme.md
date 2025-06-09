@@ -37,9 +37,6 @@ python main.py
 
 ![](images/link_nodes.gif)
 
-❇️从选中节点开始运行图
-
-![](images/run_from_node.gif)
 
 ## 编译
 
