@@ -37,17 +37,6 @@ python main.py
 
 ![](images/link_nodes.gif)
 
-
-## 编译
-
-```shell
-./compile.bat
-```
-
-![](images/img_2.png)
-
-生成的可执行文件存放在`dist`文件夹下
-
 ## 报错
 
 ❌框选节点的时候报错
