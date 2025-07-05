@@ -1,5 +1,6 @@
 
 /res/models/VOSK
 /res/models/FunASR
-
+/.vscode
+/docs
 /logs/*.txt
