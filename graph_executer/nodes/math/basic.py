@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 from NodeGraphQt import BaseNode
 import math
+from utils.general import find_nodes_folder
 
 __all__ = ['NumberNode', 'AddNode', 'PrintNode']
 
 class NumberNode(BaseNode):
     """数字节点，提供固定数值"""
-    __identifier__ = 'nodes.math'
+    __identifier__ = find_nodes_folder(__file__)[1]
     NODE_NAME = 'Number float'
 
     def __init__(self):
@@ -23,7 +24,7 @@ class NumberNode(BaseNode):
 
 class AddNode(BaseNode):
     """加法节点，执行两个数的加法"""
-    __identifier__ = 'nodes.math'
+    __identifier__ = find_nodes_folder(__file__)[1]
     NODE_NAME = 'Add'
 
     def __init__(self):
@@ -52,7 +53,7 @@ class AddNode(BaseNode):
 
 class PrintNode(BaseNode):
     """打印节点，输出结果"""
-    __identifier__ = 'nodes.math'
+    __identifier__ = find_nodes_folder(__file__)[1]
     NODE_NAME = 'Print'
 
     def __init__(self):

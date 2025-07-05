@@ -4,6 +4,7 @@ from NodeGraphQt import BaseNode
 import json
 from openai import OpenAI
 import os
+from utils.general import find_nodes_folder
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -11,7 +12,7 @@ __all__ = ['DeepSeekLLMNode']
 
 class DeepSeekLLMNode(BaseNode):
     """打印节点，输出结果"""
-    __identifier__ = 'nodes.llm'
+    __identifier__ = find_nodes_folder(__file__)[1]
     NODE_NAME = 'DeepSeek LLM'
 
     def __init__(self):
