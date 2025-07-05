@@ -9,6 +9,45 @@ from nptdms.types import TimeStamp
 import os
 import zipfile
 import requests
+from pathlib import Path
+
+
+def find_nodes_folder(start_path):
+    """
+    从给定路径开始向上查找，直到找到名为'nodes'的文件夹
+
+    :param start_path: 起始文件或文件夹路径
+    :return: 找到的nodes文件夹路径，如果未找到则返回None
+    """
+    flag_found = []
+    current_path = Path(start_path).absolute()
+
+    # 如果起始路径是文件，先转到其所在目录
+    if current_path.is_file():
+        file_name = os.path.basename(os.path.splitext(current_path)[0])
+        flag_found.append(file_name)
+        current_path = current_path.parent
+
+    while True:
+        # 检查当前目录是否有名为'nodes'的子文件夹
+        nodes_path = current_path / 'nodes'
+        if nodes_path.exists() and nodes_path.is_dir():
+            flag_found.append('nodes')
+            return str(nodes_path), ".".join(flag_found[::-1])
+
+        # 检查当前目录本身是否是'nodes'文件夹
+        if current_path.name == 'nodes':
+            flag_found.append('nodes')
+            return str(current_path), ".".join(flag_found[::-1])
+
+        # 到达根目录仍未找到，返回None
+        if current_path.parent == current_path:
+            flag_found.append('nodes')
+            return None, ".".join(flag_found[::-1])
+
+        # 向上移动一级目录
+        flag_found.append(os.path.basename(current_path))
+        current_path = current_path.parent
 
 def get_execution_order(obj_node):
         """获取从指定节点开始的下游节点执行顺序（拓扑排序）"""

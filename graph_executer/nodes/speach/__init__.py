@@ -1,1 +1,1 @@
-__all__ = ["nodes_speech"]
+__all__ = ["speech"]

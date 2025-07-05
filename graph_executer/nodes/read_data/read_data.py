@@ -66,7 +66,7 @@ class OpenDirectoryNode(BaseNode):
     Example node.
     """
     # set a unique node identifier.
-    __identifier__ = find_nodes_folder(__file__)[1] + '.read_data'
+    __identifier__ = find_nodes_folder(__file__)[1]
     # set the initial default node name.
     NODE_NAME = 'Open directory'
     def __init__(self):

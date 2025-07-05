@@ -9,10 +9,10 @@
     "reject_connection_types":{}
   },
   "nodes":{
-    "0x189afacdd90":{
-      "type_":"nodes.speech.TextInputNode",
+    "0x1e1ad34bd40":{
+      "type_":"nodes.camera.pc_camera.ImageDisplayNode",
       "icon":null,
-      "name":"Text input",
+      "name":"Image display",
       "color":[
         13,
         18,
@@ -34,18 +34,161 @@
       "disabled":false,
       "selected":false,
       "visible":true,
-      "width":256.1875,
-      "height":63.65,
+      "width":325.5625,
+      "height":69.95,
       "pos":[
-        247.2901366481443,
-        355.81314625632274
+        126.38719894623806,
+        181.47905489716234
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
       "subgraph_session":{},
       "custom":{
-        "text_in":""
+        "open_window":true
       }
+    },
+    "0x1e1ad9fd760":{
+      "type_":"nodes.camera.pc_camera.SpinWorkflow",
+      "icon":null,
+      "name":"spin workflow",
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":false,
+      "visible":true,
+      "width":280.546875,
+      "height":69.95,
+      "pos":[
+        594.2546479822222,
+        315.06938741532457
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{},
+      "custom":{
+        "is_display_loop":true
+      }
+    },
+    "0x1e1adb06ae0":{
+      "type_":"nodes.camera.pc_camera.CameraDataNode",
+      "icon":null,
+      "name":"get camera data",
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":false,
+      "visible":true,
+      "width":271.046875,
+      "height":69.95,
+      "pos":[
+        -291.0167978213901,
+        264.3605209008484
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{},
+      "custom":{
+        "is_lock_cam":true
+      }
+    },
+    "0x1e1adb06e40":{
+      "type_":"nodes.yolo.yolov13.YOLOV13Node",
+      "icon":null,
+      "name":"yolov13",
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":false,
+      "visible":true,
+      "width":265.296875,
+      "height":60,
+      "pos":[
+        60.48823486357489,
+        378.9410007629838
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{}
     }
-  }
+  },
+  "connections":[
+    {
+      "in":[
+        "0x1e1ad34bd40",
+        "image_data"
+      ],
+      "out":[
+        "0x1e1adb06e40",
+        "processed_image_data"
+      ]
+    },
+    {
+      "out":[
+        "0x1e1ad34bd40",
+        "spin_once"
+      ],
+      "in":[
+        "0x1e1ad9fd760",
+        "spin_once"
+      ]
+    },
+    {
+      "out":[
+        "0x1e1adb06ae0",
+        "image_data"
+      ],
+      "in":[
+        "0x1e1adb06e40",
+        "image_data"
+      ]
+    }
+  ]
 }

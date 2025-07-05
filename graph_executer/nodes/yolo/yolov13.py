@@ -6,216 +6,36 @@ from PySide6.QtCore import *
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 import numpy as np
-# from .yolov13.ultralytics import YOLO
+from ultralytics import YOLO
 import os, requests
 from utils.general import find_nodes_folder
-import cv2
-from utils.general import get_execution_order
-import time
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-__all__ = ['CameraDataNode', 'ImageDisplayNode', 'SpinWorkflow']
+__all__ = ['YOLOV13Node']
 
-class SpinWorkflow(BaseNode, QObject):
+class YOLOV13Node(BaseNode, QObject):
     __identifier__ = find_nodes_folder(__file__)[1]
-    NODE_NAME = 'spin workflow'
+    NODE_NAME = 'yolov13'
 
     def __init__(self):
-        super(SpinWorkflow, self).__init__()
-        self.add_input('spin_once')
-        self.add_checkbox('is_display_loop', text='is_display_loop')
-
-    def execute(self):
-        """节点执行函数"""
-        if not self.get_property("is_display_loop"):
-            return
-        else:
-            execution_order = get_execution_order(self)[:-1]
-            while self.get_property("is_display_loop"):
-                for node in execution_order:
-                    if hasattr(node, 'execute'):
-                        node.execute() # 运行节点
-
-    def set_messageSignal(self, messageSignal):
-        self.messageSignal = messageSignal
-
-    def close_node(self,):
-        """整个软件窗体关闭时调用"""
-
-    def _del_node(self):
-        """删除节点前调用"""
-
-class CameraDataNode(BaseNode, QObject):
-    __identifier__ = find_nodes_folder(__file__)[1]
-    NODE_NAME = 'get camera data'
-
-    def __init__(self):
-        super(CameraDataNode, self).__init__()
-        self.add_output('image_data')
-        self.add_checkbox("is_lock_cap", text='is_lock_cap')
-        self.image_data = None
-        self.cap = None
-
-    def execute(self):
-        """节点执行函数"""
-        if (not self.cap) and self.get_property("is_lock_cap"):
-            # 打开摄像头（0通常是默认摄像头）
-            self.cap = cv2.VideoCapture(0)
-            # 检查摄像头是否成功打开
-            if not self.cap.isOpened():
-                print("无法打开摄像头")
-                exit()
-        if not self.get_property("is_lock_cap"):
-            # 打开摄像头（0通常是默认摄像头）
-            self.cap = cv2.VideoCapture(0)
-            # 检查摄像头是否成功打开
-            if not self.cap.isOpened():
-                print("无法打开摄像头")
-                exit()
-
-        # 读取一帧
-        ret, frame = self.cap.read()# mdarray: 480, 640, 3
-        try:
-            del self.image_data
-        except:
-            pass
-        if ret:
-            self.image_data = frame
-        else:
-            self.image_data = None
-
-        if self.get_property("is_lock_cap"):
-            pass
-        else:
-            self.cap.release()
-            self.cap = None
-
-
-    def set_messageSignal(self, messageSignal):
-        self.messageSignal = messageSignal
-
-    def close_node(self,):
-        """整个软件窗体关闭时调用"""
-
-    def _del_node(self):
-        """删除节点前调用"""
-
-class VideoThread(QThread, QObject):
-    # 定义一个信号，用于发送处理后的数据
-    update_image = Signal(QPixmap)
-    
-    def __init__(self, widget_window=None):
-        super().__init__()
-        self.widget_window = widget_window
-
-        self.num_frame = 0
-        self.num_time = 0.0
-        self.before_time = None
-        self.fps = 0.0
-
-    def camera_callback(self,data):
-        """显示图像的函数，要使用信号来调用，不可外部调用"""
-        image_array = data
-        # print(image_array.shape) # (480, 640, 3)
-
-        height, width, channel = image_array.shape
-        bytesPerLine = 3 * width
-        qimage = QImage(image_array.data, width, height, bytesPerLine, QImage.Format.Format_BGR888)
-        pixmap = QPixmap.fromImage(qimage)
-
-        painter = QPainter(pixmap)
-        pen = QPen()
-        pen.setWidth(3)
-        pen.setColor(Qt.GlobalColor.red)
-        painter.setPen(pen)
-        if self.before_time:
-            self.num_frame += 1
-            self.num_time += time.time() - self.before_time
-            if self.num_frame % 10 == 0:
-                self.fps = self.num_frame / self.num_time
-                # print(f"fps: {fps:.2f}")
-                self.num_time = 0.0
-                self.num_frame = 0
-        self.before_time = time.time()
-        painter.drawText(595, 460, 60, 30, Qt.AlignmentFlag.AlignLeft, f"fps: {round(self.fps)}")
-        painter.end()
-
-        self.update_image.emit(pixmap.scaled(self.widget_window.label_img.size(), Qt.KeepAspectRatio))
-
-class ImageDisplayWidget(QtWidgets.QWidget):
-    """
-    Custom widget to be embedded inside a node.
-    """
-    def __init__(self, parent=None):
-        super(ImageDisplayWidget, self).__init__(parent)
-        from ui.nodes.nodes_display import ui_image_display
-
-        self.ui = ui_image_display.Ui_ImageDisplayForm()
-        self.ui.setupUi(self)
-        # logging.getLogger().setLevel(logging.WARNING)
-        self.label_img = QLabel(self)
-        self.label_img.setMouseTracking(True)
-        self.ui.verticalLayout.addWidget(self.label_img)
-
-    def set_node_obj(self, obj):
-        """"""
-        self.node_obj = obj
-
-    def closeEvent(self, event):
-        self.node_obj.set_property("open_window", False)
-        return super().closeEvent(event)
-
-class ImageDisplayNode(BaseNode, QObject):
-    __identifier__ = find_nodes_folder(__file__)[1]
-    NODE_NAME = 'Image display'
-
-    def __init__(self):
-        super(ImageDisplayNode, self).__init__()
+        super(YOLOV13Node, self).__init__()
         self.add_input('image_data')
-        self.add_output('spin_once')
-
-        self.add_checkbox("open_window", text='show window')
-        self.myui=ImageDisplayWidget()
-        self.myui.set_node_obj(self)
-        self.chk_value_changed()
-
-        window_widget = self.get_widget("open_window")
-        window_widget.value_changed.connect(self.chk_value_changed)
-
-        # 创建工作线程
-        self.video_thread = VideoThread(self.myui)
-        self.video_thread.start()
-        self.video_thread.update_image.connect(self.myui.label_img.setPixmap)
-
-        self.update_timer = QtCore.QTimer()
-        self.update_timer.timeout.connect(self.myui.update)
-        self.update_timer.start(500)
+        self.add_output('processed_image_data')
+        self.yolo13_model = YOLO(os.path.join(BASE_DIR, 'pt_files', 'yolov13s.pt'))
 
     def execute(self):
         """节点执行函数"""
-        image_data = self.input(0).connected_ports()[0].node().image_data
-        if image_data is not None:
-            self.video_thread.camera_callback(image_data)
-
-    def chk_value_changed(self):
-        if self.get_property("open_window"):
-            self.myui.show() 
-        else:
-            self.myui.close()
+        image_data = getattr(self.input(0).connected_ports()[0].node(), self.input(0).connected_ports()[0].name())
+        results = self.yolo13_model.predict(image_data, verbose=False, conf=0.5)
+        processed_image_data = results[0].plot(conf=True,labels=True)
+        # self.processed_image_data = processed_image_data
+        setattr(self, 'processed_image_data', processed_image_data)
 
     def set_messageSignal(self, messageSignal):
         self.messageSignal = messageSignal
 
     def close_node(self,):
         """整个软件窗体关闭时调用"""
-        self.myui.close()
 
     def _del_node(self):
         """删除节点前调用"""
-        self.myui.close()
-        self.myui.video_thread.quit()
-
-    
-
-
-

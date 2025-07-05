@@ -6,7 +6,7 @@ from openai import OpenAI
 import os
 from utils.general import find_nodes_folder
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 __all__ = ['DeepSeekLLMNode']
 

@@ -23,7 +23,7 @@ __all__ = ['WhisperRecognitionNode', 'Pyttsx3SpeakNode', 'VOSKRecognitionNode', 
 
 class TextInputNode(BaseNode):
     """打印节点，输出结果"""
-    __identifier__ = find_nodes_folder(__file__) + '.speech'
+    __identifier__ = find_nodes_folder(__file__)[1]
     NODE_NAME = 'Text input'
 
     def __init__(self):
@@ -42,7 +42,7 @@ class TextInputNode(BaseNode):
 
 class EdgeTTSSpeakNode(BaseNode):
     """打印节点，输出结果"""
-    __identifier__ = find_nodes_folder(__file__) + '.speech'
+    __identifier__ = find_nodes_folder(__file__)[1]
     NODE_NAME = 'Speak by edge-tts '
 
     def __init__(self):
@@ -106,7 +106,7 @@ class EdgeTTSSpeakNode(BaseNode):
 
 class VOSKRecognitionNode(BaseNode):
     """科学上网下载速度才快，否则只有几十kb/s"""
-    __identifier__ = find_nodes_folder(__file__) + '.speech'
+    __identifier__ = find_nodes_folder(__file__)[1]
     NODE_NAME = 'Speech recognition by vosk'
 
     def __init__(self):
@@ -199,7 +199,7 @@ class VOSKRecognitionNode(BaseNode):
 
 class WhisperRecognitionNode(BaseNode):
     """打印节点，输出结果"""
-    __identifier__ = find_nodes_folder(__file__) + '.speech'
+    __identifier__ = find_nodes_folder(__file__)[1]
     NODE_NAME = 'Speech recognition by whisper'
 
     def __init__(self):
@@ -232,7 +232,7 @@ class WhisperRecognitionNode(BaseNode):
 
 class Pyttsx3SpeakNode(BaseNode):
     """打印节点，输出结果"""
-    __identifier__ = find_nodes_folder(__file__)[1] + '.speech'
+    __identifier__ = find_nodes_folder(__file__)[1]
     NODE_NAME = 'Speak by pyttsx3 '
 
     def __init__(self):
