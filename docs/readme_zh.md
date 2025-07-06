@@ -18,7 +18,7 @@ code: [https://github.com/laoxue888/GraphExecuter](https://github.com/laoxue888/
 
 video:
 
-- [【开源】测试运行yolov13实时检测算法](https://www.bilibili.com/video/BV1eU3XzSEum/?vd_source=3bf4271e80f39cfee030114782480463)
+- [2025-7-5: 【开源】测试运行yolov13实时检测算法](https://www.bilibili.com/video/BV1eU3XzSEum/?vd_source=3bf4271e80f39cfee030114782480463)
 - [2025-4-17: 开源DeepSeek人工智能语音对话工作流，你的AI智能语音助手啦](https://www.bilibili.com/video/BV1e15qz7ESi/?vd_source=3bf4271e80f39cfee030114782480463)
 - [2025-4-2: 高效创建工作流，可实现类似unreal engine的蓝图效果，内部使用多线程高效执行节点函数](https://www.bilibili.com/video/BV1PkfKY1Esk/?vd_source=3bf4271e80f39cfee030114782480463)
 
