@@ -4,3 +4,4 @@
 /.vscode
 /docs
 /logs/*.txt
+*.pyc

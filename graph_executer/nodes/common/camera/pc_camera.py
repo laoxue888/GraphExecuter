@@ -52,7 +52,14 @@ class CameraDataNode(BaseNode, QObject):
         super(CameraDataNode, self).__init__()
         self.add_output('image_data')
         self.add_checkbox("is_lock_cam", text='is_lock_cam')
+        window_widget = self.get_widget("is_lock_cam")
+        window_widget.value_changed.connect(self.release_cam)
         self.cam = None
+
+    def release_cam(self):
+        """"""
+        if self.cam is not None:
+            self.cam.release()
 
     def execute(self):
         """节点执行函数"""

@@ -9,121 +9,7 @@
     "reject_connection_types":{}
   },
   "nodes":{
-    "0x1e1ad34bd40":{
-      "type_":"nodes.camera.pc_camera.ImageDisplayNode",
-      "icon":null,
-      "name":"Image display",
-      "color":[
-        13,
-        18,
-        23,
-        255
-      ],
-      "border_color":[
-        74,
-        84,
-        85,
-        255
-      ],
-      "text_color":[
-        255,
-        255,
-        255,
-        180
-      ],
-      "disabled":false,
-      "selected":false,
-      "visible":true,
-      "width":325.5625,
-      "height":69.95,
-      "pos":[
-        126.38719894623806,
-        181.47905489716234
-      ],
-      "layout_direction":0,
-      "port_deletion_allowed":false,
-      "subgraph_session":{},
-      "custom":{
-        "open_window":true
-      }
-    },
-    "0x1e1ad9fd760":{
-      "type_":"nodes.camera.pc_camera.SpinWorkflow",
-      "icon":null,
-      "name":"spin workflow",
-      "color":[
-        13,
-        18,
-        23,
-        255
-      ],
-      "border_color":[
-        74,
-        84,
-        85,
-        255
-      ],
-      "text_color":[
-        255,
-        255,
-        255,
-        180
-      ],
-      "disabled":false,
-      "selected":false,
-      "visible":true,
-      "width":280.546875,
-      "height":69.95,
-      "pos":[
-        594.2546479822222,
-        315.06938741532457
-      ],
-      "layout_direction":0,
-      "port_deletion_allowed":false,
-      "subgraph_session":{},
-      "custom":{
-        "is_display_loop":true
-      }
-    },
-    "0x1e1adb06ae0":{
-      "type_":"nodes.camera.pc_camera.CameraDataNode",
-      "icon":null,
-      "name":"get camera data",
-      "color":[
-        13,
-        18,
-        23,
-        255
-      ],
-      "border_color":[
-        74,
-        84,
-        85,
-        255
-      ],
-      "text_color":[
-        255,
-        255,
-        255,
-        180
-      ],
-      "disabled":false,
-      "selected":false,
-      "visible":true,
-      "width":271.046875,
-      "height":69.95,
-      "pos":[
-        -291.0167978213901,
-        264.3605209008484
-      ],
-      "layout_direction":0,
-      "port_deletion_allowed":false,
-      "subgraph_session":{},
-      "custom":{
-        "is_lock_cam":true
-      }
-    },
-    "0x1e1adb06e40":{
+    "0x189a9381df0":{
       "type_":"nodes.yolo.yolov13.YOLOV13Node",
       "icon":null,
       "name":"yolov13",
@@ -151,43 +37,157 @@
       "width":265.296875,
       "height":60,
       "pos":[
-        60.48823486357489,
-        378.9410007629838
+        -75.7263436164192,
+        93.76314533043913
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
       "subgraph_session":{}
+    },
+    "0x189a99ce630":{
+      "type_":"nodes.common.camera.pc_camera.SpinWorkflow",
+      "icon":null,
+      "name":"spin workflow",
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":true,
+      "visible":true,
+      "width":280.546875,
+      "height":69.95,
+      "pos":[
+        696.1967157466789,
+        262.8594986950524
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{},
+      "custom":{
+        "is_display_loop":false
+      }
+    },
+    "0x189a7c9fd70":{
+      "type_":"nodes.common.camera.pc_camera.CameraDataNode",
+      "icon":null,
+      "name":"get camera data",
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":false,
+      "visible":true,
+      "width":271.046875,
+      "height":69.95,
+      "pos":[
+        -472.38518606067424,
+        -10.476284368281071
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{},
+      "custom":{
+        "is_lock_cam":true
+      }
+    },
+    "0x189a9dfc620":{
+      "type_":"nodes.common.camera.pc_camera.ImageDisplayNode",
+      "icon":null,
+      "name":"Image display",
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":false,
+      "visible":true,
+      "width":325.5625,
+      "height":69.95,
+      "pos":[
+        274.2881725513592,
+        196.19223453326393
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{},
+      "custom":{
+        "open_window":false
+      }
     }
   },
   "connections":[
     {
       "in":[
-        "0x1e1ad34bd40",
+        "0x189a9381df0",
         "image_data"
       ],
       "out":[
-        "0x1e1adb06e40",
+        "0x189a7c9fd70",
+        "image_data"
+      ]
+    },
+    {
+      "out":[
+        "0x189a9381df0",
         "processed_image_data"
+      ],
+      "in":[
+        "0x189a9dfc620",
+        "image_data"
       ]
     },
     {
-      "out":[
-        "0x1e1ad34bd40",
+      "in":[
+        "0x189a99ce630",
         "spin_once"
       ],
-      "in":[
-        "0x1e1ad9fd760",
-        "spin_once"
-      ]
-    },
-    {
       "out":[
-        "0x1e1adb06ae0",
-        "image_data"
-      ],
-      "in":[
-        "0x1e1adb06e40",
-        "image_data"
+        "0x189a9dfc620",
+        "spin_once"
       ]
     }
   ]
