@@ -5,9 +5,9 @@
 # -- Author: xsf
 # -- Comment: .
 # --------------------------------------------------------------------
-import sys, os, time, threading
+# import sys, os, time, threading
 from src.mainwindow import MainWindow
-from PySide6.QtWidgets import QApplication, QMessageBox
+# from PySide6.QtWidgets import QApplication, QMessageBox
 from PySide6.QtWidgets import QApplication, QStyleFactory
 from PySide6.QtGui import QFont, QPalette, QColor
 import sys

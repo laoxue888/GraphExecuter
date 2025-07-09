@@ -106,8 +106,8 @@ class GraphFlow(QtCore.QObject):
     
     def on_node_created(self,node_obj):
         print(f"Node created: {node_obj}")
-        if hasattr(node_obj, 'set_widget_parent'):
-            node_obj.set_widget_parent(self) # 运行节点函数
+        # if hasattr(node_obj, 'set_widget_parent'):
+        #     node_obj.set_widget_parent(self) # 运行节点函数
 
     def on_nodes_deleted(self, node_id):
         print(f"Node deleted: {node_id}")

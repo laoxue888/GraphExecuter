@@ -31,8 +31,19 @@ class NameNode(BaseNode, QObject):
     def set_messageSignal(self, messageSignal):
         self.messageSignal = messageSignal
 
+    def set_widget_parent(self, parent):
+        self.setParent(parent)
+
     def close_node(self,):
         """整个软件窗体关闭时调用"""
+        # self.myui.close()
+        # del self.myui
+        # self.video_thread.quit()  # 一定要在这里释放线程
+        # self.video_thread.wait()
 
     def _del_node(self):
         """删除节点前调用"""
+        # self.myui.close()
+        # del self.myui
+        # self.video_thread.quit()  # 一定要在这里释放线程
+        # self.video_thread.wait()

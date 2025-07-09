@@ -31,8 +31,17 @@ video:
 ❇️ Install
 
 ```shell
+conda create -n graph_executer python=3.12
+conda activate graph_executer
+
 cd graph_executer
 pip install -r .\requirements.txt
+
+pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu124
+
+git clone https://github.com/laoxue888/NodeGraphQt.git
+cd NodeGraphQt
+pip install -e .
 ```
 
 ❇️Run

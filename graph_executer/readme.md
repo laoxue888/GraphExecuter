@@ -5,7 +5,7 @@
 
 # 前言
 
-配置运行graph_executer_controller的开发环境
+配置运行linux graph_executer_controller的开发环境
 
 
 # 操作
