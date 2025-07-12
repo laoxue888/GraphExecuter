@@ -16,7 +16,7 @@ from playsound import playsound
 from utils.general import get_execution_order
 from utils.general import find_nodes_folder
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 __all__ = ['WhisperRecognitionNode', 'Pyttsx3SpeakNode', 'VOSKRecognitionNode', 'EdgeTTSSpeakNode', 'TextInputNode']
 
@@ -114,17 +114,17 @@ class VOSKRecognitionNode(BaseNode):
         # 加载模型
         # https://alphacephei.com/vosk/models/vosk-model-small-cn-0.22.zip         41.87 M
         # https://alphacephei.com/vosk/models/vosk-model-cn-0.15.zip                1.67 G
-        models_dir = os.path.join(BASE_DIR, 'res', 'models', 'VOSK')
+        models_dir = os.path.join(BASE_DIR, 'models', 'VOSK')
         if not os.path.exists(models_dir):
             os.makedirs(models_dir)
 
-        model_dir = os.path.join(BASE_DIR, 'res', 'models', 'VOSK', 'vosk-model-cn-0.15')
+        model_dir = os.path.join(BASE_DIR, 'models', 'VOSK', 'vosk-model-small-cn-0.22')
         if os.path.exists(model_dir):
             self.vosk_model = Model(model_dir)
         else:
-            download_and_extract_zip('https://alphacephei.com/vosk/models/vosk-model-cn-0.15.zip',os.path.dirname(model_dir), os.path.dirname(model_dir))
+            download_and_extract_zip('https://alphacephei.com/vosk/models/vosk-model-small-cn-0.22.zip',os.path.dirname(model_dir), os.path.dirname(model_dir))
             try:
-                os.remove(os.path.join(os.path.dirname(model_dir), 'vosk-model-cn-0.15.zip'))
+                os.remove(os.path.join(os.path.dirname(model_dir), 'vosk-model-small-cn-0.22.zip'))
             except OSError:
                 pass
             self.vosk_model = Model(model_dir)
