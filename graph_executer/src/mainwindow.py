@@ -1,17 +1,18 @@
 # coding=utf-8
-from ui.ui_mainwindow import Ui_MainWindow, QObject
-from PySide6.QtWidgets import QMainWindow
-from PySide6.QtCore import QSettings
+from ui.ui_mainwindow import Ui_MainWindow
+from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtCore import QSettings, QObject, QEventLoop, QTimer
 from utils.general import *
 from  src.messageconsole import MessageConsole
 from PySide6.QtCore import Signal, Slot, QSize
 import datetime
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QTextCursor
 from src.updatelog import UpdateLog
 from collections import OrderedDict
 from src.GraphFlow import GraphFlow
 import webbrowser
 import json
+from PySide6 import QtCore
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,6 +24,7 @@ class MainWindow(QMainWindow, QObject):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
         self.userSettings = OrderedDict()
         # save custom data format: 0: data；1: type, like as str、int、float etc
         self.userSettings['graph_session'] = ['', 'str']
@@ -41,6 +43,7 @@ class MainWindow(QMainWindow, QObject):
         self.messageSignal.connect(self.messageconsole.showMessage)
         self.ui.verticalLayout_msg.addWidget(self.messageconsole)
         self.messageSignal.emit("Start time: {}".format(datetime.datetime.now()))
+
         self.initGui()
 
     def initGui(self, ):
@@ -71,6 +74,7 @@ class MainWindow(QMainWindow, QObject):
         self.ui.verticalLayout_graph.addWidget(self.graph.graph_widget)
         self.ui.actionexecute_graph.triggered.connect(self.graph.execute_all_nodes)
         self.ui.actionexetute_from_goal_node.triggered.connect(self.graph.execute_selected_nodes)
+
 
         self.ui.actionexetute_from_goal_node.setIcon(
             QIcon(os.path.join(BASE_DIR, "settings", "BtnIcon","from_obj_node.png")))

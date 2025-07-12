@@ -8,9 +8,9 @@
 # import sys, os, time, threading
 from src.mainwindow import MainWindow
 # from PySide6.QtWidgets import QApplication, QMessageBox
-from PySide6.QtWidgets import QApplication, QStyleFactory
+from PySide6.QtWidgets import QApplication, QStyleFactory, QMessageBox
 from PySide6.QtGui import QFont, QPalette, QColor
-import sys
+import sys, os, time, threading
 
 def style(qApp):
     qApp.setStyleSheet(
@@ -48,21 +48,21 @@ def style(qApp):
     qApp.setFont(font)
 
 # inner exception handler for the application
-# def handle_exception(exc_type, exc_value, exc_traceback):
-#     """异常处理函数"""
-#     message = f"An exception of type {exc_type.__name__} occurred.\n{exc_value}"
-#     QMessageBox.critical(None, "程序内部报错提示！", message)
-#
-#     logPath = os.path.join(os.getcwd(), "logs")
-#     if not os.path.isdir(logPath):
-#         os.makedirs(logPath)
-#     logPath = os.path.join(logPath, f"{time.strftime('%Y-%m-%d', time.localtime())}.txt")
-#
-#     with open(logPath, 'a') as f:
-#         saveTime = '[' + time.strftime('%H:%M:%S', time.localtime()) + ']: '
-#         f.write(saveTime + message + '\n')
-#
-# sys.excepthook = handle_exception
+def handle_exception(exc_type, exc_value, exc_traceback):
+    """异常处理函数"""
+    message = f"An exception of type {exc_type.__name__} occurred.\n{exc_value}"
+    QMessageBox.critical(None, "程序内部报错提示！", message)
+
+    logPath = os.path.join(os.getcwd(), "logs")
+    if not os.path.isdir(logPath):
+        os.makedirs(logPath)
+    logPath = os.path.join(logPath, f"{time.strftime('%Y-%m-%d', time.localtime())}.txt")
+
+    with open(logPath, 'a') as f:
+        saveTime = '[' + time.strftime('%H:%M:%S', time.localtime()) + ']: '
+        f.write(saveTime + message + '\n')
+
+sys.excepthook = handle_exception
 
 if __name__ == '__main__':
     if sys.platform == "linux":
