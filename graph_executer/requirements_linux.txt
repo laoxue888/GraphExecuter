@@ -1,17 +1,7 @@
 # python=3.12
-pyside6==6.8.3
-#pytz==2025.2
+pyside6
 pandas
-#pyinstaller==6.12.0
-#mkdocs==1.6.1
-#mkdocs-material==9.5.40
-#py7zr==0.22.0
-#nptdms==1.10.0
-#pillow==11.1.0
-#nodegraphqt==0.6.38
-#SpeechRecognition[whisper-local]==3.14.2
 SpeechRecognition
-#PyAudio
 pyttsx3
 openai
 vosk
@@ -19,10 +9,9 @@ ChatTTS
 edge-tts
 playsound
 openai
-#pillow==10.4
-# pix2text[multilingual]
 pix2tex[gui]
 pylatexenc
+matplotlib
 
 #mss
 # 安装pytorch

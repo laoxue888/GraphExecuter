@@ -84,15 +84,18 @@ bash Anaconda3-2025.06-0-Linux-x86_64.sh
 
 # 重新打开终端
 conda create -n graph_executer python=3.12
-conda activate graph_executer
+# conda deactivate
+# conda remove -n graph_executer --all
 ```
 
 # 安装相关依赖
 
 ```shell
 # 在容器中，打开终端
+conda activate graph_executer
 pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 pip3 install -r requirements_linux.txt
+
 cd downloads
 wget http://fishros.com/install -O fishros && . fishros # 安装ros2
 

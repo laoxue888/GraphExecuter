@@ -6,3 +6,4 @@
 /NodeGraphQt
 *.pyc
 /downloads
+/.vscode/.env

@@ -9,10 +9,10 @@
     "reject_connection_types":{}
   },
   "nodes":{
-    "0x7f7caaa52db0":{
-      "type_":"nodes.common.screen.clipboard.ScreenshotNode",
+    "0x7eff644e40b0":{
+      "type_":"nodes.common.camera.pc_camera.ImageDisplayNode",
       "icon":null,
-      "name":"Screenshot",
+      "name":"Image display",
       "color":[
         13,
         18,
@@ -34,15 +34,57 @@
       "disabled":false,
       "selected":false,
       "visible":true,
-      "width":160,
-      "height":60,
+      "width":391.96875,
+      "height":78.4,
       "pos":[
-        207.8240371364024,
-        161.53551875666383
+        488.10348528036576,
+        286.75669609789986
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
-      "subgraph_session":{}
+      "subgraph_session":{},
+      "custom":{
+        "open_window":false
+      }
+    },
+    "0x7eff643f0500":{
+      "type_":"nodes.common.read_data.read_data.OpenImageNode",
+      "icon":null,
+      "name":"Open image",
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":false,
+      "visible":true,
+      "width":274.265625,
+      "height":96.25,
+      "pos":[
+        30.597624297628073,
+        271.67928673388
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{},
+      "custom":{
+        "my_widget":null,
+        "image_path":"/workspaces/graph_executer/downloads/test_images/image.png"
+      }
     }
   }
 }

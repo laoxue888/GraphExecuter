@@ -144,6 +144,27 @@ def getFoldersPath(m_directory):
         return folders
     return None
 
+def getFilePath(m_directory):
+    """
+    作用：选择多个文件夹的对话框，并获取这些文件夹的路径。
+    """
+    fileDialog = QFileDialog()
+    fileDialog.setDirectory(m_directory)
+    fileDialog.setFileMode(QFileDialog.FileMode.ExistingFile)
+    fileDialog.setOption(QFileDialog.Option.DontUseNativeDialog, True)
+    listView: QListView = fileDialog.findChild(QListView, "listView")
+    if listView:
+        listView.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
+
+    treeView: QTreeView = fileDialog.findChild(QTreeView, "treeView")
+    if treeView:
+        treeView.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
+
+    if fileDialog.exec_():
+        folders = fileDialog.selectedFiles()
+        return folders
+    return None
+
 def extract_numbers_from_string(string):
     pattern = r'\d+$'  # 匹配字符串末尾的数字
     match = re.search(pattern, string)

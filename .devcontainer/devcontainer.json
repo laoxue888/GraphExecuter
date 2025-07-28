@@ -23,6 +23,8 @@
 		/* 选择容器在创建时，需要安装的插件 */
 		"extensions": [
 			"ms-vscode.cpptools",
+			"seanwu.vscode-qt-for-python",
+			"ms-python.debugpy"
 		],
 		"runArgs": [
 			"--pid=host",

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ReadDataForm</class>
- <widget class="QWidget" name="ReadDataForm">
+ <class>OpenImageForm</class>
+ <widget class="QWidget" name="OpenImageForm">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -32,7 +32,7 @@
    <item row="0" column="0">
     <widget class="QPushButton" name="pushButton_open_folder">
      <property name="text">
-      <string>Open folder</string>
+      <string>Open image</string>
      </property>
     </widget>
    </item>
