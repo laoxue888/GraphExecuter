@@ -3,9 +3,9 @@
 import sys
 from PySide6.QtWidgets import QFileDialog, QListView, QAbstractItemView, QTreeView, QTableView
 import re
-from nptdms import TdmsWriter, ChannelObject
+# from nptdms import TdmsWriter, ChannelObject
 import numpy as np
-from nptdms.types import TimeStamp
+# from nptdms.types import TimeStamp
 import os
 import zipfile
 import requests

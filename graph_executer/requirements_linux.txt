@@ -11,7 +11,7 @@ pandas
 #nodegraphqt==0.6.38
 #SpeechRecognition[whisper-local]==3.14.2
 SpeechRecognition
-PyAudio
+#PyAudio
 pyttsx3
 openai
 vosk

@@ -48,31 +48,31 @@ def style(qApp):
     qApp.setFont(font)
 
 # inner exception handler for the application
-def handle_exception(exc_type, exc_value, exc_traceback):
-    """异常处理函数"""
-    message = f"An exception of type {exc_type.__name__} occurred.\n{exc_value}"
-    QMessageBox.critical(None, "程序内部报错提示！", message)
+# def handle_exception(exc_type, exc_value, exc_traceback):
+#     """异常处理函数"""
+#     message = f"An exception of type {exc_type.__name__} occurred.\n{exc_value}"
+#     QMessageBox.critical(None, "程序内部报错提示！", message)
 
-    logPath = os.path.join(os.getcwd(), "logs")
-    if not os.path.isdir(logPath):
-        os.makedirs(logPath)
-    logPath = os.path.join(logPath, f"{time.strftime('%Y-%m-%d', time.localtime())}.txt")
+#     logPath = os.path.join(os.getcwd(), "logs")
+#     if not os.path.isdir(logPath):
+#         os.makedirs(logPath)
+#     logPath = os.path.join(logPath, f"{time.strftime('%Y-%m-%d', time.localtime())}.txt")
 
-    with open(logPath, 'a') as f:
-        saveTime = '[' + time.strftime('%H:%M:%S', time.localtime()) + ']: '
-        f.write(saveTime + message + '\n')
+#     with open(logPath, 'a') as f:
+#         saveTime = '[' + time.strftime('%H:%M:%S', time.localtime()) + ']: '
+#         f.write(saveTime + message + '\n')
 
-sys.excepthook = handle_exception
+# sys.excepthook = handle_exception
 
 if __name__ == '__main__':
-    if sys.platform == "linux":
-        import rclpy
-        rclpy.init(args=None)
-        print("当前系统是 Linux")
-    elif sys.platform == "win32":
-        print("当前系统是 Windows")
-    else:
-        print("其他系统:", sys.platform)
+    # if sys.platform == "linux":
+    #     import rclpy
+    #     rclpy.init(args=None)
+    #     print("当前系统是 Linux")
+    # elif sys.platform == "win32":
+    #     print("当前系统是 Windows")
+    # else:
+    #     print("其他系统:", sys.platform)
     app = QApplication.instance()
     if app is None:
         app = QApplication(sys.argv)
