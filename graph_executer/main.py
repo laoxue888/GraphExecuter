@@ -65,14 +65,17 @@ def style(qApp):
 # sys.excepthook = handle_exception
 
 if __name__ == '__main__':
-    # if sys.platform == "linux":
-    #     import rclpy
-    #     rclpy.init(args=None)
-    #     print("当前系统是 Linux")
-    # elif sys.platform == "win32":
-    #     print("当前系统是 Windows")
-    # else:
-    #     print("其他系统:", sys.platform)
+    if sys.platform == "linux":
+        print("当前系统是 Linux")
+        try:
+            import rclpy
+            rclpy.init(args=None)
+        except ImportError:
+            print("未找到 rclpy 模块")
+    elif sys.platform == "win32":
+        print("当前系统是 Windows")
+    else:
+        print("其他系统:", sys.platform)
     app = QApplication.instance()
     if app is None:
         app = QApplication(sys.argv)

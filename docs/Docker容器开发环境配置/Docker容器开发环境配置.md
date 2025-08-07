@@ -113,7 +113,20 @@ pip install -e .
 
 1、运行`MobaXterm`软件
 
-2、运行以下脚本
+
+2、vscode设置运行脚本的编译器
+
+![alt text](images/image-1.png)
+
+3、运行以下脚本
+
+方式一：
+
+![alt text](images/image-2.png)
+
+> 注：这样也方便调试
+
+方式二：
 ```shell
 conda activate graph_executer
 python3 main.py

@@ -3,4 +3,4 @@
 /res/models/FunASR
 /.vscode
 /logs/*.txt
-*.pyc
+**/*.pyc

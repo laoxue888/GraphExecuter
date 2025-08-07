@@ -11,8 +11,8 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "preLaunchTask": "conda-init-task",
-            "envFile": "${workspaceFolder}/.vscode/.env"
+            // "preLaunchTask": "conda-init-task",
+            // "envFile": "${workspaceFolder}/.vscode/.env"
         }
     ]
 }

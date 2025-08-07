@@ -4,7 +4,7 @@
     {
       "label": "conda-init-task",
       "type": "shell",
-      "command": "conda init && conda activate graph_executer",  // 替换为你的环境名
+      "command": "conda activate graph_executer",  // 替换为你的环境名
       "presentation": {
         "reveal": "always",  // 始终显示终端
         "panel": "shared"    // 共享终端面板

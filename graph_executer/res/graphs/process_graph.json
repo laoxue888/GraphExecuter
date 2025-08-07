@@ -9,7 +9,7 @@
     "reject_connection_types":{}
   },
   "nodes":{
-    "0x7eff644e40b0":{
+    "0x7f43467a0e00":{
       "type_":"nodes.common.camera.pc_camera.ImageDisplayNode",
       "icon":null,
       "name":"Image display",
@@ -47,7 +47,7 @@
         "open_window":false
       }
     },
-    "0x7eff643f0500":{
+    "0x7f434635c560":{
       "type_":"nodes.common.read_data.read_data.OpenImageNode",
       "icon":null,
       "name":"Open image",
