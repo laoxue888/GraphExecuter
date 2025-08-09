@@ -8,7 +8,7 @@
 		/* 加载本地的文件夹到镜像的/workspaces文件夹 */
 		"workspaceMount": "source=${localWorkspaceFolder},target=/workspaces,type=bind",
 		/* 容器内的工作空间文件夹路径，也就是说容器运行后打开的就是这个文件夹 */
-		"workspaceFolder": "/workspaces/graph_executer",
+		"workspaceFolder": "/workspaces",
 		/* 当容器创建时所下载的VSCODE插件挂载到容器target的路径下，
 			 这样再rebuild容器时不用再次下载VSCODE插件
 		*/

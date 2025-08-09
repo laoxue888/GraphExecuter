@@ -6,7 +6,7 @@ from NodeGraphQt import BaseNode, NodeBaseWidget
 from utils.general import find_nodes_folder
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-__all__ = ('NameNode')
+__all__ = ('NameNode',)
 
 class NameNode(BaseNode, QObject):
     __identifier__ = find_nodes_folder(__file__)[1]

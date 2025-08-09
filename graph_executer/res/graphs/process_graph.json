@@ -9,10 +9,10 @@
     "reject_connection_types":{}
   },
   "nodes":{
-    "0x7f43467a0e00":{
-      "type_":"nodes.common.camera.pc_camera.ImageDisplayNode",
+    "0x7f3375875250":{
+      "type_":"nodes.moveit2_yolobb_ws.moveit2_yolobb_ws.YoloObbNode",
       "icon":null,
-      "name":"Image display",
+      "name":"yolo_obb",
       "color":[
         13,
         18,
@@ -34,23 +34,23 @@
       "disabled":false,
       "selected":false,
       "visible":true,
-      "width":391.96875,
-      "height":78.4,
+      "width":250.671875,
+      "height":65.80000000000001,
       "pos":[
-        488.10348528036576,
-        286.75669609789986
+        268.9075132109772,
+        269.84220041522053
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
       "subgraph_session":{},
       "custom":{
-        "open_window":false
+        "open_window":true
       }
     },
-    "0x7f434635c560":{
-      "type_":"nodes.common.read_data.read_data.OpenImageNode",
+    "0x7f32754b3650":{
+      "type_":"nodes.moveit2_yolobb_ws.moveit2_yolobb_ws.SpinYoloObbNode",
       "icon":null,
-      "name":"Open image",
+      "name":"spin_yolo_obb",
       "color":[
         13,
         18,
@@ -70,21 +70,32 @@
         180
       ],
       "disabled":false,
-      "selected":false,
+      "selected":true,
       "visible":true,
-      "width":274.265625,
-      "height":96.25,
+      "width":232.515625,
+      "height":65.80000000000001,
       "pos":[
-        30.597624297628073,
-        271.67928673388
+        689.4679464370739,
+        324.97103270324914
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
       "subgraph_session":{},
       "custom":{
-        "my_widget":null,
-        "image_path":"/workspaces/graph_executer/downloads/test_images/image.png"
+        "is_loop":true
       }
     }
-  }
+  },
+  "connections":[
+    {
+      "out":[
+        "0x7f3375875250",
+        "spin_once"
+      ],
+      "in":[
+        "0x7f32754b3650",
+        "spin_once"
+      ]
+    }
+  ]
 }

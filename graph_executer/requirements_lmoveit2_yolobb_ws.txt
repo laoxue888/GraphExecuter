@@ -1,0 +1,18 @@
+# python=3.12
+pyside6==6.9.1
+xacro==2.0.13
+#pip index versions 包名
+ultralytics==8.3.117
+pandas
+SpeechRecognition
+pyttsx3
+vosk
+ChatTTS
+edge-tts
+playsound
+openai
+requests
+idna
+certifi
+torch 
+torchvision

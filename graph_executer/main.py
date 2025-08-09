@@ -67,11 +67,11 @@ def style(qApp):
 if __name__ == '__main__':
     if sys.platform == "linux":
         print("当前系统是 Linux")
-        try:
-            import rclpy
-            rclpy.init(args=None)
-        except ImportError:
-            print("未找到 rclpy 模块")
+        # try:
+        import rclpy
+        rclpy.init(args=None)
+        # except ImportError:
+        #     print("未找到 rclpy 模块")
     elif sys.platform == "win32":
         print("当前系统是 Windows")
     else:

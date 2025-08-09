@@ -3,4 +3,7 @@
 /res/models/FunASR
 /.vscode
 /logs/*.txt
+# Ignore Python bytecode files
+__pycache__/
 **/*.pyc
+**/*.bkp
