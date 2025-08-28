@@ -90,6 +90,7 @@ class ImageDisplayWidget(QWidget):
 
         self.ui = Ui_YoloObbForm()
         self.ui.setupUi(self)
+        self.resize(700, 580)
         self.scene = GraphicsScene(self.ui.graphicsView)
         self.ui.graphicsView.setScene(self.scene)
         self.ui.graphicsView.setMouseTracking(True)

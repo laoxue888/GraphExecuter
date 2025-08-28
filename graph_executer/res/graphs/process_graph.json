@@ -9,7 +9,7 @@
     "reject_connection_types":{}
   },
   "nodes":{
-    "0x7f3375875250":{
+    "0x7fc05b5830e0":{
       "type_":"nodes.moveit2_yolobb_ws.moveit2_yolobb_ws.YoloObbNode",
       "icon":null,
       "name":"yolo_obb",
@@ -37,8 +37,8 @@
       "width":250.671875,
       "height":65.80000000000001,
       "pos":[
-        268.9075132109772,
-        269.84220041522053
+        108.93770388025479,
+        354.04753761082833
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
@@ -47,7 +47,7 @@
         "open_window":true
       }
     },
-    "0x7f32754b3650":{
+    "0x7fbefd1bc950":{
       "type_":"nodes.moveit2_yolobb_ws.moveit2_yolobb_ws.SpinYoloObbNode",
       "icon":null,
       "name":"spin_yolo_obb",
@@ -75,8 +75,8 @@
       "width":232.515625,
       "height":65.80000000000001,
       "pos":[
-        689.4679464370739,
-        324.97103270324914
+        502.5989519929941,
+        464.22316994426797
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
@@ -89,11 +89,11 @@
   "connections":[
     {
       "out":[
-        "0x7f3375875250",
+        "0x7fc05b5830e0",
         "spin_once"
       ],
       "in":[
-        "0x7f32754b3650",
+        "0x7fbefd1bc950",
         "spin_once"
       ]
     }
