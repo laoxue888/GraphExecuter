@@ -9,10 +9,10 @@
     "reject_connection_types":{}
   },
   "nodes":{
-    "0x7fc05b5830e0":{
-      "type_":"nodes.moveit2_yolobb_ws.moveit2_yolobb_ws.YoloObbNode",
+    "0x1f35dd263f0":{
+      "type_":"nodes.common.screen.clipboard.ScreenshotNode",
       "icon":null,
-      "name":"yolo_obb",
+      "name":"Screenshot",
       "color":[
         13,
         18,
@@ -34,23 +34,55 @@
       "disabled":false,
       "selected":false,
       "visible":true,
-      "width":250.671875,
-      "height":65.80000000000001,
+      "width":160,
+      "height":60,
       "pos":[
-        108.93770388025479,
-        354.04753761082833
+        -127.78023820441581,
+        359.5239592145416
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
-      "subgraph_session":{},
-      "custom":{
-        "open_window":true
-      }
+      "subgraph_session":{}
     },
-    "0x7fbefd1bc950":{
-      "type_":"nodes.moveit2_yolobb_ws.moveit2_yolobb_ws.SpinYoloObbNode",
+    "0x1f31c4d6c60":{
+      "type_":"nodes.ocr.formula_recognition.Pix2TextNode",
       "icon":null,
-      "name":"spin_yolo_obb",
+      "name":"pix2text",
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":false,
+      "visible":true,
+      "width":160,
+      "height":75.2,
+      "pos":[
+        132.9648979375131,
+        256.13238234278856
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{}
+    },
+    "0x1f31ec0caa0":{
+      "type_":"nodes.ocr.formula_recognition.SpinOcrRecognition",
+      "icon":null,
+      "name":"spin ocr recognition",
       "color":[
         13,
         18,
@@ -72,28 +104,38 @@
       "disabled":false,
       "selected":true,
       "visible":true,
-      "width":232.515625,
-      "height":65.80000000000001,
+      "width":284.375,
+      "height":69.95,
       "pos":[
-        502.5989519929941,
-        464.22316994426797
+        386.89474509324623,
+        364.57461672438683
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
       "subgraph_session":{},
       "custom":{
-        "is_loop":true
+        "is_looping":false
       }
     }
   },
   "connections":[
     {
       "out":[
-        "0x7fc05b5830e0",
+        "0x1f35dd263f0",
+        "image"
+      ],
+      "in":[
+        "0x1f31c4d6c60",
+        "image"
+      ]
+    },
+    {
+      "out":[
+        "0x1f31c4d6c60",
         "spin_once"
       ],
       "in":[
-        "0x7fbefd1bc950",
+        "0x1f31ec0caa0",
         "spin_once"
       ]
     }

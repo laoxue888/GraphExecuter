@@ -48,3 +48,5 @@ sudo apt-get install -y libturbojpeg
 conda activate graph_executer
 python3 main.py
 ```
+
+$$ P\left(x,y|z,u\right)=\frac{P\left(z,u|x,y\right)P\left(x,y\right)}{P\left(z,u\right)}\propto\sqrt{\frac{\left(z,u|x,y\right)}{\mathbb{R}^{\prime}/z}}\sum_{\widetilde{v}=z}\left(\begin{array}{c}{{}}\\ {{}}\\ {{}}\\ {{}}\\ {{}}\\ {{}}&{{}}\end{array}\right)\ . $$

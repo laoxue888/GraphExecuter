@@ -17,9 +17,42 @@ from PIL import Image
 import numpy as np
 import matplotlib.font_manager as mfm
 from matplotlib import mathtext
+from utils.general import get_execution_order
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-__all__ = ('Pix2TextNode', 'ImageDisplayNode')
+__all__ = ('Pix2TextNode', 'SpinOcrRecognition')
+
+class SpinOcrRecognition(BaseNode, QObject):
+    __identifier__ = find_nodes_folder(__file__)[1]
+    NODE_NAME = 'spin ocr recognition'
+
+    def __init__(self):
+        super(SpinOcrRecognition, self).__init__()
+        self.add_input('spin_once')
+        self.add_checkbox('is_looping', text='is_looping')
+
+    def execute(self):
+        """节点执行函数"""
+        if not self.get_property("is_looping"):
+            return
+        else:
+            execution_order = get_execution_order(self)[:-1]
+            while self.get_property("is_looping"):
+                for node in execution_order:
+                    if hasattr(node, 'execute'):
+                        node.execute() # 运行节点
+
+    def set_messageSignal(self, messageSignal):
+        self.messageSignal = messageSignal
+
+    def close_node(self,):
+        """整个软件窗体关闭时调用"""
+
+    def _del_node(self):
+        """删除节点前调用"""
+
+
+
 
 def latex2img(text, size=32, color=(0.1,0.1,0.1), out=None, **kwds):
     """LaTex数学公式转图片
@@ -211,7 +244,7 @@ class Pix2TextNode(BaseNode, QObject):
     def execute(self):
         """节点执行函数"""
         img_fp = getattr(self.input(0).connected_ports()[0].node(), self.input(0).connected_ports()[0].name())
-        text = self.p2t(img_fp)
+        text = "Formula text: " + self.p2t(img_fp)
         self.messageSignal.emit(text)
         # 输出数据
         setattr(self, 'text', text)

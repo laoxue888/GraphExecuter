@@ -8,3 +8,5 @@
 /downloads
 /.vscode/.env
 /downloads
+build/
+dist/
