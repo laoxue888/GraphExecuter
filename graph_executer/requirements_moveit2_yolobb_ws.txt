@@ -43,4 +43,4 @@ torchvision
 opencv-python
 seaborn
 ultralytics-thop
-numpy<2.0.0
+# numpy<2.0.0

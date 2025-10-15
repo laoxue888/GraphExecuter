@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
 from pathlib import Path
-from Qt import QtCore
+from PySide6 import QtCore
 import os
 from NodeGraphQt import (
     NodeGraph,
