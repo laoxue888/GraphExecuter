@@ -13,7 +13,7 @@ class NameNode(BaseNode, QObject):
     NODE_NAME = 'name'
 
     def __init__(self):
-        super(NameNode, self).__init__()
+        super().__init__()
         self.add_input('image_data')
         self.add_output('processed_image_data')
 
