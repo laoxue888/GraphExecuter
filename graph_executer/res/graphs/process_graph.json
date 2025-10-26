@@ -9,7 +9,7 @@
     "reject_connection_types":{}
   },
   "nodes":{
-    "0x7f3da2f1d210":{
+    "0x7f83ec2fd210":{
       "type_":"nodes.SlamSoftware.mqtt_client.MQTTClientNode",
       "icon":null,
       "name":"Mqtt Client",
@@ -37,8 +37,8 @@
       "width":271.203125,
       "height":207.55,
       "pos":[
-        -130.99737988048778,
-        310.7024525480375
+        -92.7749094775071,
+        251.4026101617098
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
@@ -50,7 +50,7 @@
         "topic":"camera/image"
       }
     },
-    "0x7f3da2770c70":{
+    "0x7f83eb954c70":{
       "type_":"nodes.SlamSoftware.mqtt_client.SpinMQTTClientNode",
       "icon":null,
       "name":"Spin Node",
@@ -78,8 +78,8 @@
       "width":207.375,
       "height":65.80000000000001,
       "pos":[
-        766.2797641506745,
-        441.57801346180645
+        593.6927885646978,
+        646.4719105860447
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
@@ -88,7 +88,7 @@
         "is_loop":true
       }
     },
-    "0x7f3da2770dc0":{
+    "0x7f83eb954dc0":{
       "type_":"nodes.SlamSoftware.ros2_image.Ros2ImageNode",
       "icon":null,
       "name":"Publish Ros2 Image Topic",
@@ -116,8 +116,8 @@
       "width":348.46875,
       "height":126.7,
       "pos":[
-        320.61888468397615,
-        450.18405041243227
+        202.88958998631574,
+        484.22561328047925
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,
@@ -131,21 +131,21 @@
   "connections":[
     {
       "out":[
-        "0x7f3da2f1d210",
+        "0x7f83ec2fd210",
         "image_data"
       ],
       "in":[
-        "0x7f3da2770dc0",
+        "0x7f83eb954dc0",
         "image_data"
       ]
     },
     {
       "in":[
-        "0x7f3da2770c70",
+        "0x7f83eb954c70",
         "spin_once"
       ],
       "out":[
-        "0x7f3da2770dc0",
+        "0x7f83eb954dc0",
         "spin_once"
       ]
     }
