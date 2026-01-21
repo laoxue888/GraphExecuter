@@ -1,10 +1,10 @@
 # coding=utf-8
 from ui.ui_mainwindow import Ui_MainWindow
-from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtWidgets import QMainWindow, QApplication, QSizePolicy, QDockWidget, QWidget, QHBoxLayout
 from PySide6.QtCore import QSettings, QObject, QEventLoop, QTimer
 from utils.general import *
 from  src.messageconsole import MessageConsole
-from PySide6.QtCore import Signal, Slot, QSize
+from PySide6.QtCore import Signal, Slot, QSize, Qt
 import datetime
 from PySide6.QtGui import QIcon, QTextCursor
 from src.updatelog import UpdateLog
@@ -13,6 +13,7 @@ from src.GraphFlow import GraphFlow
 import webbrowser
 import json
 from PySide6 import QtCore
+from src.plugin_manager import PluginManager
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,6 +25,9 @@ class MainWindow(QMainWindow, QObject):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.setDockNestingEnabled(True)  # DockWidget可以重叠
+        self.ui.centralwidget.setMaximumWidth(0.1) # 缩小中间控件宽度，从而使得dockwidget可以充满整个窗口
 
         self.userSettings = OrderedDict()
         # save custom data format: 0: data；1: type, like as str、int、float etc
@@ -41,20 +45,78 @@ class MainWindow(QMainWindow, QObject):
 
         self.messageconsole = MessageConsole()
         self.messageSignal.connect(self.messageconsole.showMessage)
-        self.ui.verticalLayout_msg.addWidget(self.messageconsole)
+        # self.ui.verticalLayout_msg.addWidget(self.messageconsole)
         self.messageSignal.emit("Start time: {}".format(datetime.datetime.now()))
 
+        self.dockConsole = QDockWidget("Message Console", self)
+        self.dockConsole.setObjectName("Message Console")
+        self.dockConsole.setFloating(False)
+        self.dockConsole.setVisible(True)
+        # self.messageconsole = MessageConsole()
+        self.dockConsole.setWidget(self.messageconsole)
+        self.messageconsole.setVisible(True)
+        self.addDockWidget(Qt.DockWidgetArea.BottomDockWidgetArea, self.dockConsole)
+        self.dockConsole.setTitleBarWidget(QWidget())
+        self.dockConsole.setMinimumWidth(300)
+
+        # 插件管理器
+        self.dockWidgets = {}
+        self.dockWidgetsList = []
+        self.pluginManager = PluginManager()
+        # self.loadPlugins()
+
         self.initGui()
+        self.loadBasicPlugins()
+
+    def makeDockWidgetForPlugins(self, plugin):
+        """"""
+        dockWidget = QDockWidget(plugin.pluginName)
+        # dockWidget.setParent(self)
+        dockWidget.setObjectName(plugin.pluginName)
+        # dockWidget.setVisible(False)
+        # dockWidget.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetClosable | QDockWidget.DockWidgetFloatable)
+        # dockWidget.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetFloatable | QDockWidget.DockWidgetFeature.DockWidgetClosable)
+
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        dockWidget.setSizePolicy(sizePolicy)
+
+        # 初始化插件GUI
+        widget = QWidget(dockWidget)
+        widget.setContentsMargins(0, 0, 0, 0)
+        plugin.initGui(widget)
+        layout = QHBoxLayout(widget)
+        # dockWidget.setLayout(self.layout)
+        # dockWidget.setWidget(plugin.getWindow())  # 一定要将ui类放入，而不是插件的整个类
+        layout.addWidget(plugin.getWindow())
+        layout.setContentsMargins(0,0,0,0)
+        dockWidget.setWidget(widget)
+        widget.setVisible(True)
+
+        dockWidget.setAllowedAreas(Qt.DockWidgetArea.LeftDockWidgetArea | Qt.DockWidgetArea.RightDockWidgetArea)
+        dockWidget.setMinimumWidth(400)
+        dockWidget.setMinimumHeight(300)
+
+        if len(self.dockWidgetsList) > 0:
+            self.tabifyDockWidget(self.dockWidgetsList[len(self.dockWidgetsList) - 1], dockWidget)
+        else:
+            self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, dockWidget, Qt.Orientation.Horizontal)
+
+        dockWidget.setVisible(True)
+
+        self.dockWidgets[plugin.pluginName] = dockWidget
+        self.dockWidgetsList.append(dockWidget)
+    
+    def loadBasicPlugins(self):
+        """加载插件"""
+        # module_path = "plugins.OutputImages"
+        # pluginName = "OutputImages"
+        # self.pluginManager.loadPlugin(module_path, pluginName)
+        # self.makeDockWidgetForPlugins(self.pluginManager.usePlugin(pluginName))
 
     def initGui(self, ):
         """"""
-        
         self.graph = GraphFlow(self.messageSignal, self)
-        # try:
-        #     self.graph.graph.load_session(self.userSettings['graph_session'][0])
-        # except Exception as err:
-        #     self.messageSignal.emit(err)
-        
+
         self.graph_path = os.path.join(BASE_DIR, "res", "graphs", "process_graph.json")
         try:
             self.graph.graph.load_session(self.graph_path)
@@ -66,15 +128,21 @@ class MainWindow(QMainWindow, QObject):
             except Exception as err:
                 pass
 
-        # def saveSesionPath():
-        #     self.userSettings['graph_session'][0] = self.graph.graph.current_session()
-        #     print("save session path: ", self.userSettings['graph_session'][0])
-        # self.graph.graph.session_changed.connect(saveSesionPath)
+        self.dock_graph = QDockWidget("Graph", self)
+        self.dock_graph.setObjectName("Graph")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.dock_graph.setSizePolicy(sizePolicy)
+        # self.dockConsole.setFloating(False)
+        self.dock_graph.setVisible(True)
+        self.dock_graph.setWidget(self.graph.graph_widget)
 
-        self.ui.verticalLayout_graph.addWidget(self.graph.graph_widget)
+        self.graph.graph_widget.setVisible(True)
+        self.dock_graph.setAllowedAreas(Qt.DockWidgetArea.LeftDockWidgetArea | Qt.DockWidgetArea.RightDockWidgetArea)
+        self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.dock_graph, Qt.Orientation.Horizontal)
+        self.dock_graph.setMinimumWidth(300)
+
         self.ui.actionexecute_graph.triggered.connect(self.graph.execute_all_nodes)
         self.ui.actionexetute_from_goal_node.triggered.connect(self.graph.execute_selected_nodes)
-
 
         self.ui.actionexetute_from_goal_node.setIcon(
             QIcon(os.path.join(BASE_DIR, "settings", "BtnIcon","from_obj_node.png")))

@@ -16,10 +16,8 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QMainWindow,
-    QMenu, QMenuBar, QPushButton, QRadioButton,
-    QScrollArea, QSizePolicy, QSplitter, QStackedWidget,
-    QToolBar, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QMainWindow, QMenu, QMenuBar,
+    QSizePolicy, QToolBar, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -53,76 +51,10 @@ class Ui_MainWindow(object):
         self.actionexetute_from_goal_node.setObjectName(u"actionexetute_from_goal_node")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
-        self.verticalLayout_3.setSpacing(0)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.splitter = QSplitter(self.centralwidget)
-        self.splitter.setObjectName(u"splitter")
-        self.splitter.setOrientation(Qt.Orientation.Vertical)
-        self.stackedWidget = QStackedWidget(self.splitter)
-        self.stackedWidget.setObjectName(u"stackedWidget")
-        self.page_window1 = QWidget()
-        self.page_window1.setObjectName(u"page_window1")
-        self.verticalLayout_2 = QVBoxLayout(self.page_window1)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.scrollArea = QScrollArea(self.page_window1)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 98, 28))
-        self.pushButton = QPushButton(self.scrollAreaWidgetContents)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(240, 110, 151, 31))
-        self.checkBox = QCheckBox(self.scrollAreaWidgetContents)
-        self.checkBox.setObjectName(u"checkBox")
-        self.checkBox.setGeometry(QRect(420, 170, 82, 20))
-        self.radioButton = QRadioButton(self.scrollAreaWidgetContents)
-        self.radioButton.setObjectName(u"radioButton")
-        self.radioButton.setGeometry(QRect(160, 170, 98, 20))
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-
-        self.verticalLayout_2.addWidget(self.scrollArea)
-
-        self.stackedWidget.addWidget(self.page_window1)
-        self.page_window2 = QWidget()
-        self.page_window2.setObjectName(u"page_window2")
-        self.verticalLayout_5 = QVBoxLayout(self.page_window2)
-        self.verticalLayout_5.setSpacing(0)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_graph = QVBoxLayout()
-        self.verticalLayout_graph.setObjectName(u"verticalLayout_graph")
-
-        self.verticalLayout_5.addLayout(self.verticalLayout_graph)
-
-        self.stackedWidget.addWidget(self.page_window2)
-        self.splitter.addWidget(self.stackedWidget)
-        self.frame = QFrame(self.splitter)
-        self.frame.setObjectName(u"frame")
-        self.frame.setMinimumSize(QSize(0, 200))
-        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout = QVBoxLayout(self.frame)
-        self.verticalLayout.setSpacing(0)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_msg = QVBoxLayout()
-        self.verticalLayout_msg.setSpacing(0)
-        self.verticalLayout_msg.setObjectName(u"verticalLayout_msg")
-
-        self.verticalLayout.addLayout(self.verticalLayout_msg)
-
-        self.splitter.addWidget(self.frame)
-
-        self.verticalLayout_3.addWidget(self.splitter)
-
         MainWindow.setCentralWidget(self.centralwidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 800, 21))
+        self.menuBar.setGeometry(QRect(0, 0, 800, 33))
         font1 = QFont()
         font1.setBold(False)
         self.menuBar.setFont(font1)
@@ -152,9 +84,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
-
-
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -179,9 +108,6 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.actionexetute_from_goal_node.setToolTip(QCoreApplication.translate("MainWindow", u"\u4ece\u9009\u4e2d\u7684\u76ee\u6807\u8282\u70b9\u5f00\u59cb\u8fd0\u884c", None))
 #endif // QT_CONFIG(tooltip)
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.checkBox.setText(QCoreApplication.translate("MainWindow", u"CheckBox", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"RadioButton", None))
         self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"\u5e2e\u52a9", None))
         self.menuWindow.setTitle(QCoreApplication.translate("MainWindow", u"\u7a97\u53e3", None))
         self.menuTools.setTitle(QCoreApplication.translate("MainWindow", u"\u5de5\u5177", None))

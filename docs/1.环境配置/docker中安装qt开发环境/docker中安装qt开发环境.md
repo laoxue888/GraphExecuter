@@ -12,15 +12,17 @@ wget http://fishros.com/install -O fishros && bash fishros
 
 unminimize 
 
-apt-get update
-apt install x11-xserver-utils libxcb* ffmpeg libavcodec-dev libavutil-dev libavformat-dev libswscale-dev -y
-apt install libxcb-cursor0 libxcb-cursor-dev libglew-dev libboost-dev libboost-thread-dev libboost-filesystem-dev -y
-apt install libpng-dev nasm libeigen3-dev libglfw3-dev -y
-apt install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal ubuntu-desktop build-essential curl zip unzip tar -y
+sudo apt-get update
+sudo apt install x11-xserver-utils libxcb* ffmpeg libavcodec-dev libavutil-dev libavformat-dev libswscale-dev -y
+sudo apt install libxcb-cursor0 libxcb-cursor-dev libglew-dev libboost-dev libboost-thread-dev libboost-filesystem-dev -y
+sudo apt install libpng-dev nasm libeigen3-dev libglfw3-dev -y
+sudo apt install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal ubuntu-desktop build-essential curl zip unzip tar -y
+sudo apt install zlib1g zlib1g-dev
+
 
 cd graph_executer/downloads
 wget https://d13lb3tujbc8s0.cloudfront.net/onlineinstallers/qt-online-installer-linux-x64-4.10.0.run
-chmod +x qt-online-installer-linux-x64-4.10.0.run
+sudo chmod +x qt-online-installer-linux-x64-4.10.0.run
 ./qt-online-installer-linux-x64-4.10.0.run
 
 # 创建软链接
@@ -41,4 +43,26 @@ qtcreator
 
 ![alt text](images/image.png)
 
+
+![alt text](images/image-4.png)
+
+
 有时候qml无法显示，可以重新启动Docker容器
+
+# 报错
+
+1、
+
+```shell
+zlib-subbuild/zlib-populate-prefix/tmp/zlib-populate-gitclone.cmake:50: error: Failed to clone repository: 'https://github.com/madler/zlib.git'
+```
+
+解决办法：
+
+![alt text](images/image-2.png)
+
+在qtcreator搜索`https://github.com/madler/zlib.git`，替换为`https://bgithub.xyz/madler/zlib.git`
+
+或者
+
+![alt text](images/image-3.png)
