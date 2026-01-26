@@ -9,7 +9,7 @@
     "reject_connection_types":{}
   },
   "nodes":{
-    "0x1be63e079e0":{
+    "0x205f88d8e00":{
       "type_":"nodes.common.camera.pc_camera.ImageDisplayNode",
       "icon":null,
       "name":"Image display",

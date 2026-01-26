@@ -130,9 +130,21 @@ class MainWindow(QMainWindow, QObject):
 
         self.dock_graph = QDockWidget("Graph", self)
         self.dock_graph.setObjectName("Graph")
+        # 设置字体大小和字体系列
+        self.dock_graph.setStyleSheet("""
+            QDockWidget {
+                font-size: 5px;
+                font-family: "Microsoft YaHei", "Arial";
+                font-weight: normal;  /* 正常粗细 */
+            }
+            QDockWidget::title {
+                font-size: 4px;  /* 单独设置标题字体 */
+                font-weight: bold;  /* 粗体 */
+                font-style: italic;  /* 斜体 */
+            }
+        """)
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.dock_graph.setSizePolicy(sizePolicy)
-        # self.dockConsole.setFloating(False)
         self.dock_graph.setVisible(True)
         self.dock_graph.setWidget(self.graph.graph_widget)
 
