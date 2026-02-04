@@ -9,7 +9,7 @@
     "reject_connection_types":{}
   },
   "nodes":{
-    "0x205f88d8e00":{
+    "0x223e0f38620":{
       "type_":"nodes.common.camera.pc_camera.ImageDisplayNode",
       "icon":null,
       "name":"Image display",
@@ -37,8 +37,8 @@
       "width":379.34375,
       "height":79.4,
       "pos":[
-        167.02080896811532,
-        312.0293625679128
+        201.08550434023124,
+        209.8352764515647
       ],
       "layout_direction":0,
       "port_deletion_allowed":false,

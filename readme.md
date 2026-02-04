@@ -56,3 +56,11 @@ python main.py
 
 > - [NodeGraphQt](https://github.com/jchanvfx/NodeGraphQt)
 > - [NodeGraphQt Documentation](https://chantonic.com/NodeGraphQt/api/index.html)
+
+
+# 改进方向
+
+- 添加导航栏和多窗口。
+- 节点的运行模式可以选择，比如可从节点图的首个节点开始运行，或者从最后一个节点运行，或者循环运行，或者只运行一次。
+- 做一个节点代码编辑的窗口ui。
+- 有些后端服务使用FastAPI。

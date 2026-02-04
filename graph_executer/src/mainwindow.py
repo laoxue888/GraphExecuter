@@ -133,14 +133,9 @@ class MainWindow(QMainWindow, QObject):
         # 设置字体大小和字体系列
         self.dock_graph.setStyleSheet("""
             QDockWidget {
-                font-size: 5px;
+                font-size: 12px;
                 font-family: "Microsoft YaHei", "Arial";
                 font-weight: normal;  /* 正常粗细 */
-            }
-            QDockWidget::title {
-                font-size: 4px;  /* 单独设置标题字体 */
-                font-weight: bold;  /* 粗体 */
-                font-style: italic;  /* 斜体 */
             }
         """)
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
