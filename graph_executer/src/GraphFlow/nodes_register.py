@@ -214,7 +214,13 @@ class GraphFlow(QtCore.QObject):
             visited.add(node)
             node.set_messageSignal(self.messageSignal)
             if hasattr(node, 'execute'):
+                 origin_color = node.color()  
+                #  print(origin_color) # (13, 18, 23) ，可用于节点颜色重置
+                 node.set_color(0, 255, 0)  # 执行成功后将节点颜色设置为绿色
                  node.execute() # 运行节点
+                #  time.sleep(0.1)  # 模拟执行时间 做一下延时
+                 node.set_color(*origin_color)
+                 
         visit_up(obj_node)
 
     def save_session(self,):
