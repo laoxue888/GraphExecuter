@@ -2,13 +2,6 @@
 
 ## GraphExecuter
 
-</div>
-
-<div align="center">
-
-[中文](./docs/readme_zh.md) | English
-
-</div>
 
 GraphExecuter is an open-source software developed based on NodeGraphQt, adopting a multi-threaded graph execution architecture. Users only need to write node logic and construct graphs by connecting nodes, and the system will automatically schedule and execute complex workflows.
 
@@ -16,6 +9,7 @@ This system combines visual node editing with efficient parallel computing, maki
 
 GraphExecuter provides a convenient solution for users who require flexible, scalable, and visual orchestration, catering to diverse needs from experimentation to production.
 
+![ ](images/image.png)
 
 code: [https://github.com/laoxue888/GraphExecuter](https://github.com/laoxue888/GraphExecuter)
 
