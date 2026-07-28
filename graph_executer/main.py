@@ -67,8 +67,12 @@ def style(qApp):
 if __name__ == '__main__':
     if sys.platform == "linux":
         print("当前系统是 Linux")
-        # import rclpy
-        # rclpy.init(args=None)
+        try:
+            import rclpy
+            rclpy.init(args=None)
+            print("ROS2 环境已初始化")
+        except ImportError:
+            print("未找到 ROS 2 Python API")
     elif sys.platform == "win32":
         print("当前系统是 Windows")
     else:
