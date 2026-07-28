@@ -9,8 +9,13 @@
     "reject_connection_types":{}
   },
   "nodes":{
+<<<<<<< HEAD
     "0x7f1788dbec90":{
       "type_":"nodes.Moveit2YoloObb.moveit2_yolobb_ws.YoloObbNode",
+=======
+    "0x1bceead3dd0":{
+      "type_":"nodes.common.math.basic.NumberNode",
+>>>>>>> 1da24fc2b74268b0bc116b3a7c48a7c53c3dda7b
       "icon":null,
       "name":"yolo_obb",
       "color":[
@@ -47,10 +52,16 @@
         "open_window":true
       }
     },
+<<<<<<< HEAD
     "0x7f16cfce5220":{
       "type_":"nodes.Moveit2YoloObb.moveit2_yolobb_ws.SpinYoloObbNode",
       "icon":null,
       "name":"spin_yolo_obb",
+=======
+    "0x1bceeb185f0":{
+      "type_":"nodes.common.math.basic.NumberNode",
+      "icon":null,
+      "name":"Number float 1",
       "color":[
         13,
         18,
@@ -70,7 +81,81 @@
         180
       ],
       "disabled":false,
-      "selected":true,
+      "selected":false,
+      "visible":true,
+      "width":289.671875,
+      "height":63.65,
+      "pos":[
+        147.7597174425532,
+        223.5339315156574
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{},
+      "custom":{
+        "number":"1.0"
+      }
+    },
+    "0x1bceeb19160":{
+      "type_":"nodes.common.math.basic.AddNode",
+      "icon":null,
+      "name":"Add",
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":false,
+      "visible":true,
+      "width":160,
+      "height":75.2,
+      "pos":[
+        585.2034663746269,
+        161.9493463821124
+      ],
+      "layout_direction":0,
+      "port_deletion_allowed":false,
+      "subgraph_session":{}
+    },
+    "0x1bceeb19250":{
+      "type_":"nodes.common.math.basic.PrintNode",
+      "icon":null,
+      "name":"Print",
+>>>>>>> 1da24fc2b74268b0bc116b3a7c48a7c53c3dda7b
+      "color":[
+        13,
+        18,
+        23,
+        255
+      ],
+      "border_color":[
+        74,
+        84,
+        85,
+        255
+      ],
+      "text_color":[
+        255,
+        255,
+        255,
+        180
+      ],
+      "disabled":false,
+      "selected":false,
       "visible":true,
       "width":232.515625,
       "height":65.80000000000001,
@@ -89,12 +174,41 @@
   "connections":[
     {
       "out":[
+<<<<<<< HEAD
         "0x7f1788dbec90",
         "spin_once"
       ],
       "in":[
         "0x7f16cfce5220",
         "spin_once"
+=======
+        "0x1bceead3dd0",
+        "value"
+      ],
+      "in":[
+        "0x1bceeb19160",
+        "input_1"
+      ]
+    },
+    {
+      "out":[
+        "0x1bceeb185f0",
+        "value"
+      ],
+      "in":[
+        "0x1bceeb19160",
+        "input_2"
+      ]
+    },
+    {
+      "out":[
+        "0x1bceeb19160",
+        "output"
+      ],
+      "in":[
+        "0x1bceeb19250",
+        "input"
+>>>>>>> 1da24fc2b74268b0bc116b3a7c48a7c53c3dda7b
       ]
     }
   ]

@@ -40,8 +40,8 @@ class MainWindow(QMainWindow, QObject):
         self.setIconSize(QSize(22, 22))
 
         self.updatelog = UpdateLog(self)
-        self.ui.actionWindow1.triggered.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
-        self.ui.actionWindow2.triggered.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
+        # self.ui.actionWindow1.triggered.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
+        # self.ui.actionWindow2.triggered.connect(lambda: self.ui.stackedWidget.setCurrentIndex(1))
 
         self.messageconsole = MessageConsole()
         self.messageSignal.connect(self.messageconsole.showMessage)
